@@ -1,0 +1,131 @@
+Interview Questions
+
+Rearranging a Word
+
+Rearrange letters to create the next lexicographically larger string
+
+Given two strings, one is said to be alphabetically greater than the other if its leftmost differing character is of greater ordinal value than the one in the other string. For example, abd is greater than abc because their first differing characters, d > c.
+ 
+More formally, consider a string, word, consisting of lowercase letters, ascii[a-z]. If we permute word's characters into a new string, x, we say that x is alphabetically greater than word if the following two conditions are satisfied:
+ 
+    The sequence of the first i-1 characters in both word and x are exactly the same.
+    The ith character of string x is alphabetically greater than the ith character of word.
+ 
+Given word, we want to find the next alphabetically greater string.
+ 
+For example, the string word = "baca" has the following permutations:
+    Alphabetically smaller strings (in ascending order): "aabc", "aacb", "abac", "abca", "acab", "acba", and "baac".
+    Alphabetically greater strings (in ascending order): "bcaa", "caab", "caba", and "cbaa".
+This means that the next alphabetically greater string is "bcaa".
+ 
+Function Description
+
+Complete the function rearrangeWord in the editor below. The function must return the next lexicographically larger permutation of the string. If no such string exists, return the string "no answer" instead.
+ 
+rearrangeWord has the following parameter(s):
+    word:  the string to analyze
+ 
+Constraints
+word[i] subset of ascii[a-z].
+    2 <= |word| <=104
+ 
+Input Format for Custom Testing
+
+Input from stdin will be processed as follows and passed to the function.
+ 
+The only line contains the string word.
+Sample Case 0
+Sample Input 0
+xy
+Sample Output 0
+yx
+Explanation 0
+We can rearrange the characters in word = "xy" to create the next alphabetically greater string, so we return yx.
+Sample Case 1
+Sample Input 1
+pp
+Sample Output 1
+no answer
+Explanation 1
+There is no way we can rearrange the characters in word = "pp" to create an alphabetically greater string, so we return no answer.
+Sample Case 2
+Sample Input 2
+hefg
+Sample Output 2
+hegf
+Explanation 2
+We can rearrange the characters in word = "hefg" to create the next alphabetically greater string, so we return hegf.
+
+============================================================
+
+Ascending Binary Sorting
+Sort an integer array by ascending number of 1's in each number's binary representation.
+Consider an array of decimal integers. We want to rearrange the array according to the following rules:
+ 
+    Sort the integers in ascending order by the number of 1's in their binary representations.
+    Elements having the same number of 1's in their binary representations are ordered by increasing decimal value.
+ 
+For example, consider the array [7, 8, 6, 5]10 = [0111, 1000, 0110, 0101]2.  First group the items by number of binary digits equal to 1: [[1000], [0101, 0110], [0111]]2.  The elements with two 1's now must be ordered:  [0110, 0101]2 = [6, 5]10.  We sort those two elements in ascending order by value making our final array [1000, 0101, 0110, 0111]2 = [8, 5, 6, 7]10.
+ 
+Function Description
+Complete the function rearrange in the editor below. The function must return an array of decimal integers sorted per the rules above.
+ 
+rearrange has the following parameter(s):
+    elements[elements[0],...elements[n-1]]:  an array of integers to sort
+ 
+Constraints
+    1 < n < 105
+    1 < elements[i] < 109
+ 
+Input Format for Custom Testing
+Input from stdin will be processed as follows and passed to the function.
+ 
+The first line contains an integer n, the size of the integer array elements.
+The next n lines each contain elements[i] where 0 &#8804; i < n.
+Sample Case 0
+Sample Input 0
+3
+1
+2
+3
+ 
+Sample Output 0
+1
+2
+3
+ 
+Explanation 0
+Given elements = [1, 2, 3]:
+    (1)10 → (1)2
+    (2)10 → (10)2
+    (3)10 → (11)2
+ 
+The decimal integers 1 and 2 both have one 1 in their binary representation, so we order them by increasing decimal value (i.e., 1 < 2). The decimal integer 3 has two 1's in its binary representation, so we order it after 1 and 2. We then return elements = [1, 2, 3] as our sorted array.
+ 
+Sample Case 1
+Sample Input 1
+5
+5
+3
+7
+10
+14
+ 
+Sample Output 1
+3
+5
+10
+7
+14
+ 
+Explanation 1
+Given elements = [5, 3, 7, 10, 14]:
+    (5)10 → (101)2
+    (3)10 → (11)2
+    (7)10 → (111)2
+    (10)10 → (1010)2
+    (14)10 → (1110)2
+ 
+The decimal integers 5, 3, and 10 have two 1's in their binary representations, so we order them by increasing decimal value (i.e., 3 < 5 < 10).
+The decimal integers 7 and 14 have three 1's in their binary representations, so we place them after 3, 5, and 10 in increasing decimal order (i.e., 7 < 14).
+We then return elements = [3, 5, 10, 7, 14] as our sorted array.

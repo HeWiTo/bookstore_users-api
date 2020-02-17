@@ -2,6 +2,7 @@ package users
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/HeWiTo/bookstore_users-api/utils/errors"
 
@@ -22,7 +23,7 @@ func CreateUser(c *gin.Context) {
 
 	result, saveErr := services.CreateUser(user)
 	if saveErr != nil {
-		// Handle the error
+		c.JSON(saveErr.Status, saveErr)
 		return
 	}
 
@@ -30,7 +31,20 @@ func CreateUser(c *gin.Context) {
 }
 
 func GetUser(c *gin.Context) {
-	c.String(http.StatusNotImplemented, "Implement me!")
+	userID, userErr := strconv.ParseInt(c.Param("user_id"), 10, 64)
+	if userErr != nil {
+		err := errors.NewBadRequestError("user id should be a number")
+		c.JSON(err.Status, err)
+		return
+	}
+
+	user, getErr := services.GetUser(userID)
+	if getErr != nil {
+		c.JSON(getErr.Status, getErr)
+		return
+	}
+
+	c.JSON(http.StatusOK, user)
 }
 
 // func SearchUser(c *gin.Context) {
