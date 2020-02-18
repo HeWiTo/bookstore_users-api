@@ -3,6 +3,8 @@ package users
 import (
 	"fmt"
 
+	"github.com/HeWiTo/bookstore_users-api/utils/datenow"
+
 	"github.com/HeWiTo/bookstore_users-api/utils/errors"
 )
 
@@ -34,6 +36,8 @@ func (user *Users) Save() *errors.RestErr {
 		}
 		return errors.NewBadRequestError(fmt.Sprintf("user %d already exists", user.ID))
 	}
+
+	user.CreatedAt = datenow.GetNowString()
 
 	usersDB[user.ID] = user
 	return nil
